@@ -8,7 +8,6 @@
 #include <set>
 template<>
 
-
 struct std::hash<std::pair<std::string, std::string>>
 {
 	size_t operator()(const std::pair<std::string, std::string> &p) const
@@ -53,8 +52,6 @@ void main() {
 	int numero;
 	std::vector<std::string> lista{"air", "fire", "earth", "water"};
 
-	
-	
 	while (getline(fentrada, line)) {
 		std::pair<std::string, std::string> key;
 		//encontrar signos
@@ -74,7 +71,6 @@ void main() {
 		key.first = elem1;
 		key.second = elem2;
 		mymap[key] = result;
-		
 	};
 
 	std::cin >> caso;
@@ -94,7 +90,6 @@ void main() {
 		lista.push_back("fire");
 		lista.push_back("earth");
 		lista.push_back("water");
-
 	}
 	else if (caso == "delete")
 	{
@@ -104,7 +99,6 @@ void main() {
 		{
 			lista.erase(lista.begin() + (numero - 1));
 		}
-	
 	}
 	else if (caso == "info")
 	{
@@ -120,15 +114,14 @@ void main() {
 
 		for (int i = 0; i < lista.size() - 1; i++) {
 
-			limpio.insert[lista[i]];
+			limpio.insert(lista[i]);
 		}
 		lista.clear();
 
 		for (auto j = limpio.begin(); j != limpio.end(); j++) {
 
-			lista.push_back[*j];
+			lista.push_back(*j);
 		}
-		
 	}
 	else if (caso == "help")
 	{
