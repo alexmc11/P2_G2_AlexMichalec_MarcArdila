@@ -24,7 +24,7 @@ void main() {
 	int pos1, pos2, pos3, end;
 	int res1, res2, res3;
 	std::string caso;
-	std::string numero;
+	int numero;
 	std::vector<std::string> lista{"air", "fire", "earth", "water"};
 
 	
@@ -57,14 +57,7 @@ void main() {
 	if (caso == "add")
 	{
 		std::cin >> numero;
-		for (int i = 0; i < lista.size(); i++)
-		{
-
-			if (i == numero)
-			{
-				lista.insert(lista);
-			}
-		}
+		lista.push_back(lista[numero]);
 	}
 	else if (caso == "add basics")
 	{
