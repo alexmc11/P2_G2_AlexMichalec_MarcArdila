@@ -1,4 +1,4 @@
-#include <fstream>
+﻿#include <fstream>
 #include <iostream>
 #include <stdlib.h>
 #include <unordered_map>
@@ -6,6 +6,8 @@
 #include <vector>
 #include <algorithm>
 template<>
+
+
 struct std::hash<std::pair<std::string, std::string>>
 {
 	size_t operator()(const std::pair<std::string, std::string> &p) const
@@ -16,8 +18,31 @@ struct std::hash<std::pair<std::string, std::string>>
 		}
 };
 
+void help()
+{
+	std::cout << "----------------------" << std::endl;
+	std::cout << "--FULLENTI ALCHEMIST--" << std::endl;
+	std::cout << "----------------------" << std::endl;
+	std::cout << std::endl;
+	std::cout << "- Cuando se combinan 2 elementos y estos producen un resultado, se suma 1 a la" << std::endl;
+	std::cout << " puntuación si el nuevo elemento no se encuentra en la lista de elemento. No" << std::endl;
+	std::cout << " se pueden combinar 2 elementos que ocupen la misma posición en la lista." << std::endl << std::endl;
+	std::cout << "- escribir 'add' y el número de un elemento disponible en la lista añade" << std::endl;
+	std::cout << "una copia del elemento al que hace referencia dentro de la lista." << std::endl << std::endl;
+	std::cout << "- escribir 'add basics' añade nuevas instancias de los 4 elementos básicos." << std::endl << std::endl;
+	std::cout << "- escribir 'delete' y el número de un elemento disponible en la lista," << std::endl;
+	std::cout << " elimina el elemento al que hace referencia." << std::endl << std::endl;
+	std::cout << "- escribir 'info' y el número de un elemento disponible en la lista, " << std::endl;
+	std::cout << "abre en el navegador la página de Wikipedia con la información acerca " << std::endl;
+	std::cout << "del elemento." << std::endl << std::endl;
+	std::cout << "- escribir 'sort' ordena todos los elementos por orden alfabético." << std::endl << std::endl;
+	std::cout << "- escribir 'clean' elimina todos los elementos que estén repetidos en la lista." << std::endl << std::endl;
+
+}
 
 void main() {
+
+	help();
 	std::ifstream fentrada("elements.dat");
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mymap;
 	std::string line, result, elem1, elem2;
@@ -31,7 +56,6 @@ void main() {
 	
 	while (getline(fentrada, line)) {
 		std::pair<std::string, std::string> key;
-		std::cout << line << std::endl;
 		//encontrar signos
 		pos1 = 0;
 		pos2 = line.find("=");
@@ -95,6 +119,6 @@ void main() {
 	}
 	else if (caso == "help")
 	{
-
+	
 	}
 }
