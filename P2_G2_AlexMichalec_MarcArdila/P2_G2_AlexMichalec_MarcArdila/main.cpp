@@ -23,11 +23,14 @@ void main() {
 	std::string line, result, elem1, elem2;
 	int pos1, pos2, pos3, end;
 	int res1, res2, res3;
+	std::string caso;
+	std::string numero;
+	std::vector<std::string> lista{"air", "fire", "earth", "water"};
 
-	std::pair<std::string, std::string> key;
+	
 	
 	while (getline(fentrada, line)) {
-
+		std::pair<std::string, std::string> key;
 		std::cout << line << std::endl;
 		//encontrar signos
 		pos1 = 0;
@@ -42,12 +45,49 @@ void main() {
 		result = line.substr(pos1, res1);
 		elem1 = line.substr(pos2 + 2, res2);
 		elem2 = line.substr(pos3 + 2, res3);
-
+		//meter los datos en el mapa
 		key.first = elem1;
 		key.second = elem2;
 		mymap[key] = result;
 		
 	};
 
+	std::cin >> caso;
 
+	if (caso == "add")
+	{
+		std::cin >> numero;
+		for (int i = 0; i < lista.size(); i++)
+		{
+
+			if (i == numero)
+			{
+				lista.insert(lista);
+			}
+		}
+	}
+	else if (caso == "add basics")
+	{
+		
+	}
+	else if (caso == "delete")
+	{
+
+	}
+	else if (caso == "info")
+	{
+
+	}
+	else if (caso == "sort")
+	{
+
+	}
+	else if (caso == "clean")
+	{
+
+	}
+	else if (caso == "help")
+	{
+
+	}
 }

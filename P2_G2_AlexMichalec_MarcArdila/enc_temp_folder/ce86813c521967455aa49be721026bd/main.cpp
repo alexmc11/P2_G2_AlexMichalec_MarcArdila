@@ -23,8 +23,11 @@ void main() {
 	std::string line, result, elem1, elem2;
 	int pos1, pos2, pos3, end;
 	int res1, res2, res3;
-	while (getline(fentrada, line)) {
 
+	
+	
+	while (getline(fentrada, line)) {
+		std::pair<std::string, std::string> key;
 		std::cout << line << std::endl;
 		//encontrar signos
 		pos1 = 0;
@@ -39,6 +42,10 @@ void main() {
 		result = line.substr(pos1, res1);
 		elem1 = line.substr(pos2 + 2, res2);
 		elem2 = line.substr(pos3 + 2, res3);
+
+		key.first = elem1;
+		key.second = elem2;
+		mymap[key] = result;
 		
 	};
 
