@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <set>
 template<>
 
 
@@ -116,19 +115,7 @@ void main() {
 	}
 	else if (caso == "clean")
 	{
-		std::set<std::string>limpio;
 
-		for (int i = 0; i < lista.size() - 1; i++) {
-
-			limpio.insert[lista[i]];
-		}
-		lista.clear();
-
-		for (auto j = limpio.begin(); j != limpio.end(); j++) {
-
-			lista.push_back[*j];
-		}
-		
 	}
 	else if (caso == "help")
 	{
