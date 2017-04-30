@@ -57,15 +57,29 @@ void main() {
 	if (caso == "add")
 	{
 		std::cin >> numero;
-		lista.push_back(lista[numero]);
+
+		if (numero < lista.size()) 
+		{
+			lista.push_back(lista[numero-1]);
+		}
 	}
 	else if (caso == "add basics")
 	{
-		
+		lista.push_back("air");
+		lista.push_back("fire");
+		lista.push_back("earth");
+		lista.push_back("water");
+
 	}
 	else if (caso == "delete")
 	{
+		std::cin >> numero;
 
+		if (numero < lista.size()) 
+		{
+			lista.erase(lista.begin() + (numero - 1));
+		}
+	
 	}
 	else if (caso == "info")
 	{
@@ -73,7 +87,7 @@ void main() {
 	}
 	else if (caso == "sort")
 	{
-
+		std::sort(lista.begin(), lista.end());
 	}
 	else if (caso == "clean")
 	{
