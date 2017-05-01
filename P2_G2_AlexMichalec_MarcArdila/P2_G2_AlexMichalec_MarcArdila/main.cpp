@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <set>
 #include <Windows.h>
+#include <cstdlib>
 template<>
 
 struct std::hash<std::pair<std::string, std::string>>
@@ -76,6 +77,8 @@ void main() {
 	};
 
 	std::cin >> caso;
+	
+	int juego = atoi(caso.c_str);
 
 	if (caso == "add")
 	{
@@ -136,5 +139,11 @@ void main() {
 	{
 		system("cls");
 		help();
+	}
+	
+	//El caso, si la X es = 0, entre,
+	else if (caso != "0")
+	{
+
 	}
 }
