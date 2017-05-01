@@ -27,18 +27,18 @@ void help()
 	std::cout << "----------------------" << std::endl;
 	std::cout << std::endl;
 	std::cout << "- Cuando se combinan 2 elementos y estos producen un resultado, se suma 1 a la" << std::endl;
-	std::cout << " puntuación si el nuevo elemento no se encuentra en la lista de elemento. No" << std::endl;
-	std::cout << " se pueden combinar 2 elementos que ocupen la misma posición en la lista." << std::endl << std::endl;
-	std::cout << "- escribir 'add' y el número de un elemento disponible en la lista añade" << std::endl;
+	std::cout << " puntuacion si el nuevo elemento no se encuentra en la lista de elemento. No" << std::endl;
+	std::cout << " se pueden combinar 2 elementos que ocupen la misma posicion en la lista." << std::endl << std::endl;
+	std::cout << "- escribir 'add' y el numero de un elemento disponible en la lista añade" << std::endl;
 	std::cout << "una copia del elemento al que hace referencia dentro de la lista." << std::endl << std::endl;
-	std::cout << "- escribir 'add basics' añade nuevas instancias de los 4 elementos básicos." << std::endl << std::endl;
-	std::cout << "- escribir 'delete' y el número de un elemento disponible en la lista," << std::endl;
+	std::cout << "- escribir 'add basics' añade nuevas instancias de los 4 elementos basicos." << std::endl << std::endl;
+	std::cout << "- escribir 'delete' y el numero de un elemento disponible en la lista," << std::endl;
 	std::cout << " elimina el elemento al que hace referencia." << std::endl << std::endl;
-	std::cout << "- escribir 'info' y el número de un elemento disponible en la lista, " << std::endl;
-	std::cout << "abre en el navegador la página de Wikipedia con la información acerca " << std::endl;
+	std::cout << "- escribir 'info' y el numero de un elemento disponible en la lista, " << std::endl;
+	std::cout << "abre en el navegador la página de Wikipedia con la informacion acerca " << std::endl;
 	std::cout << "del elemento." << std::endl << std::endl;
-	std::cout << "- escribir 'sort' ordena todos los elementos por orden alfabético." << std::endl << std::endl;
-	std::cout << "- escribir 'clean' elimina todos los elementos que estén repetidos en la lista." << std::endl << std::endl;
+	std::cout << "- escribir 'sort' ordena todos los elementos por orden alfabetico." << std::endl << std::endl;
+	std::cout << "- escribir 'clean' elimina todos los elementos que esten repetidos en la lista." << std::endl << std::endl;
 
 }
 
