@@ -78,7 +78,7 @@ void main() {
 
 	std::cin >> caso;
 	
-	int juego = atoi(caso.c_str);
+	int juego = atoi(caso.c_str());
 
 	if (caso == "add")
 	{
@@ -114,7 +114,7 @@ void main() {
 		url.operator+=(wiki);
 		url.operator+=(lista[aux - 1]);
 
-		ShellExecuteA(nullptr, "open", url.c_str, nullptr, nullptr, SW_SHOWNORMAL);
+		ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 	}
 	else if (caso == "sort")
 	{
