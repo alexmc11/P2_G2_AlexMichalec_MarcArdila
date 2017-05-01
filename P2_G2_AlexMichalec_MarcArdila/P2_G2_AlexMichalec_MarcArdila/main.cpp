@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <set>
+#include <Windows.h>
 template<>
 
 struct std::hash<std::pair<std::string, std::string>>
@@ -50,7 +51,8 @@ void main() {
 	int res1, res2, res3;
 	std::string caso;
 	int numero;
-	std::vector<std::string> lista{"air", "fire", "earth", "water"};
+	std::vector<std::string> lista{"Air", "Fire", "Earth", "Water"};
+	std::string wiki = "https://en.wikipedia.org/wiki/";
 
 	while (getline(fentrada, line)) {
 		std::pair<std::string, std::string> key;
@@ -86,10 +88,10 @@ void main() {
 	}
 	else if (caso == "add basics")
 	{
-		lista.push_back("air");
-		lista.push_back("fire");
-		lista.push_back("earth");
-		lista.push_back("water");
+		lista.push_back("Air");
+		lista.push_back("Fire");
+		lista.push_back("Earth");
+		lista.push_back("Water");
 	}
 	else if (caso == "delete")
 	{
@@ -102,7 +104,14 @@ void main() {
 	}
 	else if (caso == "info")
 	{
+		int aux;
+		std::cin >> aux;
+		std::string url;
 
+		url.operator+=(wiki);
+		url.operator+=(lista[aux - 1]);
+
+		ShellExecuteA(nullptr, "open", url.c_str, nullptr, nullptr, SW_SHOWNORMAL);
 	}
 	else if (caso == "sort")
 	{
