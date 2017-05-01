@@ -52,6 +52,9 @@ void main() {
 	int res1, res2, res3;
 	std::string caso;
 	int numero;
+	std::string a;
+	int el2;
+	int puntuacion = 0;
 	std::vector<std::string> lista{"Air", "Fire", "Earth", "Water"};
 	std::string wiki = "https://en.wikipedia.org/wiki/";
 
@@ -75,75 +78,113 @@ void main() {
 		key.second = elem2;
 		mymap[key] = result;
 	};
+	while (puntuacion < 395) {
+		
+		for (int i = 0; i < lista.size(); i++)
+		{
+			std::cout << i + 1 << ". " << lista[i] << std::endl;
+		}
 
-	std::cin >> caso;
+		std::cin >> caso;
+		
+		int juego = atoi(caso.c_str());
+
+		if (caso == "add")
+		{
+			std::cin >> a;
+			numero = atoi(a.c_str());
+			if (a == "basics")
+			{
+				lista.push_back("Air");
+				lista.push_back("Fire");
+				lista.push_back("Earth");
+				lista.push_back("Water");
+				
+			}
+			else if (numero <= lista.size() && numero != 0)
+			{
+				lista.push_back(lista[numero - 1]);
+			}
+			
+		}
 	
-	int juego = atoi(caso.c_str());
-
-	if (caso == "add")
-	{
-		std::cin >> numero;
-
-		if (numero < lista.size()) 
+		else if (caso == "delete")
 		{
-			lista.push_back(lista[numero-1]);
-		}
-	}
-	else if (caso == "add basics")
-	{
-		lista.push_back("Air");
-		lista.push_back("Fire");
-		lista.push_back("Earth");
-		lista.push_back("Water");
-	}
-	else if (caso == "delete")
-	{
-		std::cin >> numero;
+			std::cin >> numero;
 
-		if (numero < lista.size()) 
+			if (numero < lista.size())
+			{
+				lista.erase(lista.begin() + (numero - 1));
+			}
+		}
+		else if (caso == "info")
 		{
-			lista.erase(lista.begin() + (numero - 1));
+			int aux;
+			std::cin >> aux;
+			std::string url;
+
+			url.operator+=(wiki);
+			url.operator+=(lista[aux - 1]);
+
+			ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 		}
-	}
-	else if (caso == "info")
-	{
-		int aux;
-		std::cin >> aux;
-		std::string url;
-
-		url.operator+=(wiki);
-		url.operator+=(lista[aux - 1]);
-
-		ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
-	}
-	else if (caso == "sort")
-	{
-		std::sort(lista.begin(), lista.end());
-	}
-	else if (caso == "clean")
-	{
-		std::set<std::string>limpio;
-
-		for (int i = 0; i < lista.size() - 1; i++) {
-
-			limpio.insert(lista[i]);
+		else if (caso == "sort")
+		{
+			std::sort(lista.begin(), lista.end());
 		}
-		lista.clear();
+		else if (caso == "clean")
+		{
+			std::set<std::string>limpio;
 
-		for (auto j = limpio.begin(); j != limpio.end(); j++) {
+			for (int i = 0; i < lista.size() - 1; i++) {
 
-			lista.push_back(*j);
+				limpio.insert(lista[i]);
+			}
+			lista.clear();
+
+			for (auto j = limpio.begin(); j != limpio.end(); j++) {
+
+				lista.push_back(*j);
+			}
 		}
-	}
-	else if (caso == "help")
-	{
+	
+
+		//El caso, si la X es = 0, entre,
+		else if (juego != 0)
+		{
+			
+			std::cin >> el2;
+			while (juego == el2)
+			{
+				std::cin >> el2;
+			}
+				
+				std::pair<std::string, std::string> key;
+				key.first = lista[juego - 1];
+				key.second = lista[el2 - 1];
+				
+				auto it = mymap[key];
+
+				if (mymap.size() > 390)
+				{
+					key.first = lista[el2 - 1];
+					key.second = lista[juego - 1];
+					mymap.erase(mymap.end());
+					auto it = mymap[key];
+
+					if (mymap.size() > 390)
+					{
+						mymap.erase(mymap.end());
+					}
+				}
+				else
+					lista.push_back(mymap[key]);
+					
+		}
 		system("cls");
-		help();
-	}
-	
-	//El caso, si la X es = 0, entre,
-	else if (caso != "0")
-	{
-
+		if (caso == "help")
+		{
+			help();
+		}
 	}
 }
