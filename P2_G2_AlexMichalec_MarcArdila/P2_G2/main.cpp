@@ -20,6 +20,20 @@ struct std::hash<std::pair<std::string, std::string>>
 		}
 };
 
+bool discovered(std::vector<std::string>a, std::vector<std::string>b, int c)
+{
+	bool d;
+	for (int i = 0; i < a.size(); i++)
+	{
+		if (a[i] == b[c])
+		{
+			d = true;
+		}
+		else
+			d = false;
+	}
+	return d;
+}
 void help()
 {
 	std::cout << "----------------------" << std::endl;
@@ -56,7 +70,9 @@ void main() {
 	int el2;
 	int puntuacion = 0;
 	std::vector<std::string> lista{"Air", "Fire", "Earth", "Water"};
+	std::vector<std::string> lista2;
 	std::string wiki = "https://en.wikipedia.org/wiki/";
+	bool check;
 
 	while (getline(fentrada, line)) {
 		std::pair<std::string, std::string> key;
@@ -71,19 +87,21 @@ void main() {
 		res3 = end - (pos3 + 1);
 		//leer los elementos y almacenarlos en strings
 		result = line.substr(pos1, res1);
-		elem1 = line.substr(pos2 + 2, res2);
-		elem2 = line.substr(pos3 + 2, res3);
+		elem1 = line.substr(pos2 + 2, res2-1);
+		elem2 = line.substr(pos3 + 2, res3 - 1);
 		//meter los datos en el mapa
 		key.first = elem1;
 		key.second = elem2;
 		mymap[key] = result;
 	};
 	while (puntuacion < 395) {
-		
+		check = true;
 		for (int i = 0; i < lista.size(); i++)
 		{
 			std::cout << i + 1 << ". " << lista[i] << std::endl;
 		}
+		std::cout << std::endl;
+		std::cout << "  Puntos: " << puntuacion << std::endl;
 
 		std::cin >> caso;
 		
@@ -167,18 +185,32 @@ void main() {
 
 				if (mymap.size() > 390)
 				{
+					auto erase = mymap.find(key);
+					mymap.erase(erase);
 					key.first = lista[el2 - 1];
 					key.second = lista[juego - 1];
-					mymap.erase(mymap.end());
 					auto it = mymap[key];
 
 					if (mymap.size() > 390)
 					{
-						mymap.erase(mymap.end());
+						auto erase = mymap.find(key);
+						mymap.erase(erase);
+						check = false;
 					}
 				}
-				else
+				if (check == true)
+				{
 					lista.push_back(mymap[key]);
+					lista2.push_back(mymap[key]);
+					lista.erase(lista.begin() + juego - 1);
+					lista.erase(lista.begin() + el2 - 2);
+					int end = lista2.size();
+					bool discover = discovered(lista, lista2, end);
+					if (discover == false)
+					{
+						puntuacion++;
+					}
+				}
 					
 		}
 		system("cls");
