@@ -20,19 +20,19 @@ struct std::hash<std::pair<std::string, std::string>>
 		}
 };
 
-bool discovered(std::vector<std::string>a, std::vector<std::string>b, int c)
+bool discovered(std::string a, std::vector<std::string>b, int c)
 {
 	bool d;
-	for (int i = 0; i < a.size(); i++)
+	c--;
+	for (int i = 0; i < b.size(); i++)
 	{
-		if (a[i] == b[c])
+		if (a == b[i])
 		{
-			d = true;
+			return true;
 		}
-		else
-			d = false;
+
 	}
-	return d;
+	return false;
 }
 void help()
 {
@@ -73,6 +73,8 @@ void main() {
 	std::vector<std::string> lista2;
 	std::string wiki = "https://en.wikipedia.org/wiki/";
 	bool check;
+	bool discover = false;
+	bool firsttime = false;
 
 	while (getline(fentrada, line)) {
 		std::pair<std::string, std::string> key;
@@ -200,16 +202,24 @@ void main() {
 				}
 				if (check == true)
 				{
+					if (firsttime == true)
+					{
+						int end = lista2.size();
+						discover = discovered(mymap[key], lista2, end);
+						
+					}
 					lista.push_back(mymap[key]);
-					lista2.push_back(mymap[key]);
 					lista.erase(lista.begin() + juego - 1);
 					lista.erase(lista.begin() + el2 - 2);
-					int end = lista2.size();
-					bool discover = discovered(lista, lista2, end);
+					
 					if (discover == false)
 					{
 						puntuacion++;
+						lista2.push_back(mymap[key]);
 					}
+					firsttime = true;
+					discover = false;
+					
 				}
 					
 		}
