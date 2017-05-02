@@ -10,6 +10,8 @@
 #include <cstdlib>
 template<>
 
+//DEFINIR EL TEMPLATE HASH PARA EL TIPO PAIR//////////////////////////////////////
+
 struct std::hash<std::pair<std::string, std::string>>
 {
 	size_t operator()(const std::pair<std::string, std::string> &p) const
@@ -20,10 +22,11 @@ struct std::hash<std::pair<std::string, std::string>>
 		}
 };
 
-bool discovered(std::string a, std::vector<std::string>b, int c)
+//FUNCION PARA COMPROBAR SI UN ELEMENTO HA SIDO DESCUBIERTO///////////////////////
+
+bool discovered(std::string a, std::vector<std::string>b)
 {
 	bool d;
-	c--;
 	for (int i = 0; i < b.size(); i++)
 	{
 		if (a == b[i])
@@ -34,6 +37,9 @@ bool discovered(std::string a, std::vector<std::string>b, int c)
 	}
 	return false;
 }
+
+//FUNCION PARA IMPRIMIR EL MENSAJE DE AYUDA//////////////////////////////////////////
+
 void help()
 {
 	std::cout << "----------------------" << std::endl;
@@ -58,7 +64,12 @@ void help()
 
 void main() {
 
+	//PRINT INICIAL///////////////////////////////////////////////////////////////
+
 	help();
+
+	//SETUP, VARIABLES///////////////////////////////////////////////////////////////////////
+
 	std::ifstream fentrada("elements.dat");
 	std::unordered_map<std::pair<std::string, std::string>, std::string> mymap;
 	std::string line, result, elem1, elem2;
@@ -75,6 +86,8 @@ void main() {
 	bool check;
 	bool discover = false;
 	bool firsttime = false;
+
+	//LECTURA DE FICHERO//////////////////////////////////////////////////////////
 
 	while (getline(fentrada, line)) {
 		std::pair<std::string, std::string> key;
@@ -96,8 +109,20 @@ void main() {
 		key.second = elem2;
 		mymap[key] = result;
 	};
+
+	//COMPROBAR SI HA LEIDO TODOS LOS ELEMENTOS///////////////////////////////////
+
+	if (mymap.empty())
+		exit(0);
+
+	//BUCLE DE JUEGO//////////////////////////////////////////////////////////////
+
 	while (puntuacion < 395) {
+
 		check = true;
+
+		//bucle para imprimir
+
 		for (int i = 0; i < lista.size(); i++)
 		{
 			std::cout << i + 1 << ". " << lista[i] << std::endl;
@@ -105,9 +130,11 @@ void main() {
 		std::cout << std::endl;
 		std::cout << "  Puntos: " << puntuacion << std::endl;
 
+		//lecturas
+
 		std::cin >> caso;
 		
-		int juego = atoi(caso.c_str());
+		int elem1 = atoi(caso.c_str());
 
 		if (caso == "add")
 		{
@@ -168,31 +195,31 @@ void main() {
 			}
 		}
 	
+		//en caso de que sean numeros los valores que reciba excepto 0, siendo 0 el valor de string
 
-		//El caso, si la X es = 0, entre,
-		else if (juego != 0)
+		else if (elem1 != 0)
 		{
 			
 			std::cin >> el2;
-			while (juego == el2)
+			while (elem1 == el2)
 			{
 				std::cin >> el2;
 			}
 				
 				std::pair<std::string, std::string> key;
-				key.first = lista[juego - 1];
+				key.first = lista[elem1 - 1];
 				key.second = lista[el2 - 1];
 				
 				auto it = mymap[key];
-
+				//hace una primera comprobacion para ver si los valores introducidos deberian estar al reves
 				if (mymap.size() > 390)
 				{
 					auto erase = mymap.find(key);
 					mymap.erase(erase);
 					key.first = lista[el2 - 1];
-					key.second = lista[juego - 1];
+					key.second = lista[elem1 - 1];
 					auto it = mymap[key];
-
+					//hace una segunda comprobacion con los valores invertidos
 					if (mymap.size() > 390)
 					{
 						auto erase = mymap.find(key);
@@ -200,26 +227,37 @@ void main() {
 						check = false;
 					}
 				}
+				//si ha pasado los anteriores condicionales, significa que es una combinacion valida
 				if (check == true)
 				{
+					//si no es la primera vez que se crea un elemento, busca si esta descubierto o no para evitar acceder a indices que no existan
 					if (firsttime == true)
 					{
-						int end = lista2.size();
-						discover = discovered(mymap[key], lista2, end);
+
+						discover = discovered(mymap[key], lista2);
 						
 					}
 					lista.push_back(mymap[key]);
-					lista.erase(lista.begin() + juego - 1);
+					lista.erase(lista.begin() + elem1 - 1);
 					lista.erase(lista.begin() + el2 - 2);
 					
+					//en caso de que no haya sido descubierto, suma puntuacion y añade el elemento a la lista de descubrimientos
 					if (discover == false)
 					{
 						puntuacion++;
 						lista2.push_back(mymap[key]);
+						std::cout << "BIEN HECHO! HAS DESCUBIERTO: " << mymap[key] << "!  + 1 PUNTO" << std::endl;
+						system("pause");
 					}
+					
 					firsttime = true;
 					discover = false;
 					
+				}
+				else
+				{
+					std::cout << "ERROR, COMBINACION NO EXISTENTE" << std::endl;
+					system("pause");
 				}
 					
 		}
