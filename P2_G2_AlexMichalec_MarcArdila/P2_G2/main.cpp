@@ -159,7 +159,7 @@ void main() {
 		{
 			std::cin >> numero;
 
-			if (numero < lista.size())
+			if (numero <= lista.size())
 			{
 				lista.erase(lista.begin() + (numero - 1));
 			}
@@ -173,7 +173,8 @@ void main() {
 			url.operator+=(wiki);
 			url.operator+=(lista[aux - 1]);
 
-			ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+			ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+
 		}
 		else if (caso == "sort")
 		{
